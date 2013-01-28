@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Mastermind</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="mastermind.css">
+    <script src="jquery.1.8.2.js"></script>
+    <script src='mastermind.js'></script>  
+</head>
+<body>
+  <div class="screen">
+    <p style="text-align:center;font-size:32px;padding: 30px 0 0 0;"><strong>MASTER</strong>MIND</p>
+    <div class="guess-area">
+      <div class="guessing-area">
+        Guess:
+        <input id="guessInput" type="text" maxlength="4"/>
+        <button id="guessButton">Make a guess</button>
+      </div>
+      <p style="float:left;">Insturctions: Guess a 4-digit number using the numbers 1 through 9. If your guess matches the code, you win! Otherwise you will be told how many of your digits matches the code (denoted by 'correct'), and how many digits are in the code but in the wrong position (denoted by 'wrong').<br>The code's digits are unique.</p>
+    </div>
+      <div class="guessed-area">Guesses:
+        <div id="guessed"></div>
+      </div>
+      <div class="code-area">
+        <button id="codeButton">Show code</button>
+        <button id="gameButton">New game</button>
+        <div id="code"></div>
+      </div>
+  </div>
+</body>
+</html>

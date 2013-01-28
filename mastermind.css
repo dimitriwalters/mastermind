@@ -1,0 +1,42 @@
+.screen {
+	height: 500px;
+	width: 650px;
+	border-style: solid;
+	border-width: 10px;
+	background-color: #eee;
+	margin: 10px auto;
+}
+
+.guess-area {
+	width: 200px;
+    margin: 0px 30px;
+	border-radius: 40px;
+	padding: 0 20px;
+	float: left;
+}
+
+.guessing-area {
+	background-color: #ccc;
+    margin: 20px 0px;
+    border-style:solid;
+	border-width:1px;
+	border-radius: 40px;
+	padding: 20px;
+	float: left;
+}
+
+.guessed-area {
+	background-color: #ccc;
+	width: 200px;
+    margin: 20px 30px;
+    border-style:solid;
+	border-width:1px;
+    padding: 20px;
+	float: right;
+}
+
+.code-area {
+	width: 180px;
+	margin: 0 auto;
+	clear: both;
+}
