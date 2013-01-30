@@ -64,7 +64,7 @@ function checkGuess () {
 		$('#guess'+guesses).text('#'+guesses+': '+guess+' : '+m+' correct, '+n+' wrong');
 	}
 	if (guesses == 12) {
-		alert('You lost! The code was ' + code);
+		alert('You lost! The code was '+code);
 		gameOver();
 	}
 	$('#guessInput').val('');
