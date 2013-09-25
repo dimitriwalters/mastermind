@@ -1,30 +1,30 @@
-<html>
-<head>
-    <title>Mastermind</title>
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="mastermind.css">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src='mastermind.js'></script>  
-</head>
-<body>
-  <div class="screen">
-    <p style="text-align:center; font-size:32px; padding-top:30px;"><strong>MASTER</strong>MIND</p>
-    <div class="guess-area">
-      <div class="guessing-area">
-        Guess:
-        <input id="guessInput" type="text" maxlength="4"/>
-        <button id="guessButton">Make a guess</button>
-      </div>
-      <p style="float:left;">Insturctions: Guess a 4-digit number using the numbers 1 through 9. If your guess matches the code, you win! Otherwise you will be told how many of your digits matches the code (denoted by 'correct'), and how many digits are in the code but in the wrong position (denoted by 'wrong').<br>The code's digits are unique.</p>
-    </div>
-      <div class="guessed-area">Guesses:
-        <div id="guessed"></div>
-      </div>
-      <div class="code-area">
-        <button id="codeButton">Show code</button>
-        <button id="gameButton">New game</button>
-        <div id="code"></div>
-      </div>
-  </div>
-</body>
+<!doctype html>
+<html ng-app>
+	<head>
+		<title>Mastermind</title>
+		<link rel="stylesheet" type="text/css" href="mastermind.css">
+		<script src="http://code.angularjs.org/1.2.0-rc.2/angular.min.js"></script>
+		<script src='mastermind.js'></script>  
+	</head>
+	<body>
+		<div id="game" ng-controller="MastermindCntl">
+			<p id="top"><strong>MASTER</strong>MIND</p>
+			<div id="left">
+				<div id="guessing-input">
+					Guess:
+					<input type="text" maxlength="4" ng-model="number" ng-keyup="validNumber()" ng-disabled="done" />
+					<button ng-click="checkGuess()" ng-disabled="done">Make a guess</button>
+				</div>
+				<p>Insturctions: Guess a 4-digit number using the numbers 1 through 9. If your guess matches the code, you win! Otherwise you will be told how many of your digits matches the code (denoted by 'correct'), and how many digits are in the code but in the wrong position (denoted by 'wrong').<br />The code's digits are unique.</p>
+			</div>
+			<div id="right">
+				Guesses:
+				<div ng-repeat="guess in guesses">{{ guess.code }}</div>
+			</div>
+			<div id="bottom">
+				<button ng-click="showCode()">Show code</button>
+				<button ng-click="resetGame()">New game</button>
+			</div>
+		</div>
+	</body>
 </html>
