@@ -1,5 +1,5 @@
-The code-breaking game Mastermind.
+A web application of the boardgame Mastermind.
 
-Can be played here:
+The game can be played here:
 
 http://dimitriwalters.com/projects/mastermind
