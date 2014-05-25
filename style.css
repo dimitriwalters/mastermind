@@ -39,17 +39,8 @@ a {
 	#guessing-area p {
 		float: left;
 	}
-#guesses-area {
-	background-color: #ccc;
-	width: 200px;
-    border-style:solid;
-	border-width:1px;
-    padding: 20px;
-	float: right;
-}
 #guessing-input {
 	background-color: #ccc;
-	margin-top: 20px;
 	margin-bottom: 15px;
     border-style:solid;
 	border-width:1px;
@@ -70,6 +61,14 @@ a {
 		display: block;
 		margin-top: 10px;
 	}
+#guesses-area {
+	background-color: #ccc;
+	width: 200px;
+    border-style:solid;
+	border-width:1px;
+    padding: 20px;
+	float: right;
+}
 #button-area, #bottom-message {
 	margin-left: 10px;
 	clear: left;
