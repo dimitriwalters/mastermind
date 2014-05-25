@@ -1,6 +1,8 @@
 function MastermindCntl($scope, $location) {
 	$scope.resetGame  = function () {
 		$scope.number = '';
+		$scope.errorMessage = '';
+		$scope.bottomMessage = '';
 		$scope.done = false;
 		numberOfGuesses = 0;
 		secretCode = "";
@@ -16,14 +18,14 @@ function MastermindCntl($scope, $location) {
 	}
 
 	$scope.checkGuess = function () {
+		$scope.errorMessage = '';
 		numberOfGuesses++;
 		var guess = $scope.number;
 		if (guess.length != 4) {
-			alert('Please enter a 4 digit number');
+			$scope.errorMessage = 'Please enter a 4 digit number';
 			numberOfGuesses--;
 		}
 		else if (guess == secretCode) {
-			alert('You won!');
 			$scope.guesses[numberOfGuesses-1].code = '#'+numberOfGuesses+': '+guess+' : You won!';
 			numberOfGuesses--;
 			gameOver();
@@ -34,15 +36,15 @@ function MastermindCntl($scope, $location) {
 			$scope.guesses[numberOfGuesses-1].code = '#'+numberOfGuesses+': '+guess+' : '+c+' correct, '+w+' wrong';
 		}
 		if (numberOfGuesses == $scope.limit) {
-			alert('You lost! The code was '+secretCode+'.');
+			$scope.bottomMessage = 'You lost! The code was '+secretCode+'.';
 			gameOver();
 		}
 		$scope.number = '';
 	}
 
 	$scope.showCode = function () {
-		alert('The code was: '+secretCode+'. A new game will start.');
-		$scope.resetGame();
+		$scope.bottomMessage = 'The code was '+secretCode;
+		gameOver();
 	}
 
 	$scope.validNumber = function () {
