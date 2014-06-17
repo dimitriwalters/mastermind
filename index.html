@@ -11,9 +11,9 @@
 		<div id="top-area"><span id="title"><strong>MASTER</strong>MIND</span><span id="author">developed by <a href="http://dimi.io/" target="_blank">Dimitri Walters</a></span></div>
 		<div id="game" ng-controller="MastermindCntl">
 			<div id="guessing-area">
-				<form id="guessing-input" ng-submit="checkGuess()">
+				<form id="guessing-input" ng-submit="makeGuess()">
 					Guess:
-					<input id="guessing-textbox" type="text" maxlength="4" ng-model="number" ng-keyup="validNumber()" ng-disabled="done" />
+					<input id="guessing-textbox" type="text" maxlength="4" ng-model="number" ng-keyup="validateNumber()" ng-disabled="done" />
 					<button id="submit-guess" type="submit" ng-disabled="done">Make a guess</button>
 					<span id="error-message">{{ errorMessage }}</span>
 				</form>
@@ -24,7 +24,7 @@
 			</div>
 			<div id="button-area">
 				<button ng-click="showCode()" ng-disabled="done">Show code</button>
-				<button ng-click="resetGame()">New game</button>
+				<button ng-click="newGame()">New game</button>
 			</div>
 			<p id="bottom-message">{{ bottomMessage }}</p>
 		</div>

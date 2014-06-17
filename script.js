@@ -1,23 +1,28 @@
 function MastermindCntl($scope, $location) {
-	$scope.resetGame  = function () {
-		$scope.number = '';
+	$scope.number = '';
+	var numberOfGuesses = 0;
+	var secretCode = "";
+	var GUESSING_LIMIT = 12;
+
+	$scope.newGame  = function() {
 		$scope.errorMessage = '';
 		$scope.bottomMessage = '';
 		$scope.done = false;
 		numberOfGuesses = 0;
 		secretCode = "";
-		numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+		var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 		for (var i=0; i<4; i++) {
-			number = Math.floor(Math.random() * (9-i));
-			secretCode += numbers[number];
-			numbers.splice(number, 1);
+			var digit = Math.floor(Math.random() * (9-i));
+			secretCode += numbers[digit];
+			numbers.splice(digit, 1);
 		}
 		$scope.guesses = [];
-		for (var i=1; i<=$scope.limit; i++)
-			$scope.guesses.push({'code': '#'+i+':'});
+		for (var i=1; i<=GUESSING_LIMIT; i++) {
+			$scope.guesses.push({'code': '#' + i + ':'});
+		}
 	}
 
-	$scope.checkGuess = function () {
+	$scope.makeGuess = function() {
 		$scope.errorMessage = '';
 		numberOfGuesses++;
 		var guess = $scope.number;
@@ -26,56 +31,56 @@ function MastermindCntl($scope, $location) {
 			numberOfGuesses--;
 		}
 		else if (guess == secretCode) {
-			$scope.guesses[numberOfGuesses-1].code = '#'+numberOfGuesses+': '+guess+' : You won!';
+			$scope.guesses[numberOfGuesses-1].code = '#' + numberOfGuesses + ': ' + guess + ' : You won!';
 			numberOfGuesses--;
 			gameOver();
 		}
 		else {
-			c = correctPoints(guess, secretCode);
-			w = wrongPoints(guess, secretCode);
-			$scope.guesses[numberOfGuesses-1].code = '#'+numberOfGuesses+': '+guess+' : '+c+' correct, '+w+' wrong';
+			var correct = correctPoints(guess, secretCode);
+			var wrong = wrongPoints(guess, secretCode);
+			$scope.guesses[numberOfGuesses-1].code = '#' + numberOfGuesses + ': ' + guess + ' : ' + correct +' correct, ' + wrong + ' wrong';
 		}
-		if (numberOfGuesses == $scope.limit) {
-			$scope.bottomMessage = 'You lost! The code was '+secretCode+'.';
+		if (numberOfGuesses == GUESSING_LIMIT) {
+			$scope.bottomMessage = 'You lost! The code was ' + secretCode + '.';
 			gameOver();
 		}
 		$scope.number = '';
 	}
 
-	$scope.showCode = function () {
-		$scope.bottomMessage = 'The code was '+secretCode;
+	$scope.showCode = function() {
+		$scope.bottomMessage = 'The code was ' + secretCode;
 		gameOver();
 	}
 
-	$scope.validNumber = function () {
+	$scope.validateNumber = function() {
 		$scope.number = $scope.number.replace(/[^1-9\.]/g,'');
 	}
 
-	function init () {
-		var numberOfGuesses = 0;
-		var secretCode = "";
-		var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-		$scope.limit = 12;
-		$scope.resetGame();
+	function init() {
+		$scope.newGame();
 	}
 
-	function correctPoints (guessedCode, actualCode) {
-		count = 0;
-		for (var i=0; i<guessedCode.length; i++)
-			if (guessedCode.charAt(i) == actualCode.charAt(i))
-				count++;
-		return count;
+	function correctPoints(guessedCode, actualCode) {
+		var correct = 0;
+		for (var i=0; i<guessedCode.length; i++) {
+			if (guessedCode.charAt(i) == actualCode.charAt(i)) {
+				correct++;
+			}
+		}
+		return correct;
 	}
 
-	function wrongPoints (guessedCode, actualCode) {
-		count = 0;
-		for (var i=0; i<guessedCode.length; i++)
-			if ((guessedCode.charAt(i) != actualCode.charAt(i)) && (actualCode.indexOf(guessedCode.charAt(i)) != -1))
-				count++;
-		return count;
+	function wrongPoints(guessedCode, actualCode) {
+		var wrong = 0;
+		for (var i=0; i<guessedCode.length; i++) {
+			if ((guessedCode.charAt(i) != actualCode.charAt(i)) && (actualCode.indexOf(guessedCode.charAt(i)) != -1)) {
+				wrong++;
+			}
+		}
+		return wrong;
 	}
 
-	function gameOver () {
+	function gameOver() {
 		$scope.done = true;
 	}
 
