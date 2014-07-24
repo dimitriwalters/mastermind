@@ -11,16 +11,17 @@ function MastermindCntl($scope, $location) {
 		numberOfGuesses = 0;
 		secretCode = "";
 		var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-		for (var i=0; i<4; i++) {
+		var i;
+		for (i=0; i<4; i++) {
 			var digit = Math.floor(Math.random() * (9-i));
 			secretCode += numbers[digit];
 			numbers.splice(digit, 1);
 		}
 		$scope.guesses = [];
-		for (var i=1; i<=GUESSING_LIMIT; i++) {
+		for (i=1; i<=GUESSING_LIMIT; i++) {
 			$scope.guesses.push({'code': '#' + i + ':'});
 		}
-	}
+	};
 
 	$scope.makeGuess = function() {
 		$scope.errorMessage = '';
@@ -45,16 +46,16 @@ function MastermindCntl($scope, $location) {
 			gameOver();
 		}
 		$scope.number = '';
-	}
+	};
 
 	$scope.showCode = function() {
 		$scope.bottomMessage = 'The code was ' + secretCode;
 		gameOver();
-	}
+	};
 
 	$scope.validateNumber = function() {
 		$scope.number = $scope.number.replace(/[^1-9\.]/g,'');
-	}
+	};
 
 	function init() {
 		$scope.newGame();
@@ -62,7 +63,8 @@ function MastermindCntl($scope, $location) {
 
 	function correctPoints(guessedCode, actualCode) {
 		var correct = 0;
-		for (var i=0; i<guessedCode.length; i++) {
+		var i;
+		for (i=0; i<guessedCode.length; i++) {
 			if (guessedCode.charAt(i) == actualCode.charAt(i)) {
 				correct++;
 			}
@@ -72,7 +74,8 @@ function MastermindCntl($scope, $location) {
 
 	function wrongPoints(guessedCode, actualCode) {
 		var wrong = 0;
-		for (var i=0; i<guessedCode.length; i++) {
+		var i;
+		for (i=0; i<guessedCode.length; i++) {
 			if ((guessedCode.charAt(i) != actualCode.charAt(i)) && (actualCode.indexOf(guessedCode.charAt(i)) != -1)) {
 				wrong++;
 			}
