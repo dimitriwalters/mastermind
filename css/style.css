@@ -39,6 +39,11 @@ a {
 	padding: 20px;
 }
 
+	.game__bottom-message {
+		margin-left: 10px;
+		clear: left;
+	}
+
 
 .top {
 	margin: 30px 0;
@@ -96,7 +101,7 @@ a {
 }
 
 
-.button-area, .game__bottom-message {
+.button-area {
 	margin-left: 10px;
 	clear: left;
 }
