@@ -7,27 +7,30 @@
 		<link rel="stylesheet" type="text/css" href="css/style.min.css">
 	</head>
 	<body ng-app="app">
-		<div id="top-area"><span id="title"><strong>MASTER</strong>MIND</span><span id="author">developed by <a href="http://dimi.io/" target="_blank">Dimitri Walters</a></span></div>
-		<div id="game" ng-controller="MastermindController">
-			<div id="guessing-area">
-				<form id="guessing-input" ng-submit="makeGuess()">
-					Guess:
-					<input id="guessing-textbox" type="text" maxlength="4" ng-model="number" ng-keyup="validateNumber()" ng-disabled="done" />
-					<button id="submit-guess" type="submit" ng-disabled="done">Make a guess</button>
-					<span id="error-message">{{ errorMessage }}</span>
+		<div class="top">
+			<span class="top__title"><strong>MASTER</strong>MIND</span>
+			<span class="top__author">developed by <a href="http://dimi.io/" target="_blank">Dimitri Walters</a></span>
+		</div>
+		<div class="game" ng-controller="MastermindController">
+			<div class="guessing-area">
+				<form class="guessing-area__form" ng-submit="makeGuess()">
+					<span>Guess:</span>
+					<input class="guessing-area__input" type="text" maxlength="4" ng-model="guess" ng-keyup="validateNumber()" ng-disabled="done" />
+					<button class="guessing-area__submit" type="submit" ng-disabled="done">Make a guess</button>
+					<span class="guessing-area__error">{{ errorMessage }}</span>
 				</form>
 			</div>
-			<div id="guesses-area">
-				Guesses:
+			<div class="guesses-area">
+				<span>Guesses:</span>
 				<div ng-repeat="guess in guesses">{{ guess.code }}</div>
 			</div>
-			<div id="button-area">
+			<div class="button-area">
 				<button ng-click="showCode()" ng-disabled="done">Show code</button>
 				<button ng-click="newGame()">New game</button>
 			</div>
-			<p id="bottom-message">{{ bottomMessage }}</p>
+			<p class="game__bottom-message">{{ bottomMessage }}</p>
 		</div>
-		<div id="instructions">
+		<div class="instructions">
 			<p>Insturctions: Guess a 4-digit number using the numbers 1 through 9. If your guess matches the code, you win! Otherwise you will be told how many of your digits matches the code (denoted by 'correct'), and how many digits are in the code but in the wrong position (denoted by 'wrong'). The code's digits are unique.</p>
 		</div>
 		<script src="http://code.angularjs.org/1.2.0-rc.2/angular.min.js"></script>

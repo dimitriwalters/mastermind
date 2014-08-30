@@ -1,91 +1,130 @@
+'use strict';
+
 var app = angular.module('app',[]);
 
-app.controller('MastermindController', ['$scope',
-function($scope) {
-	$scope.number = '';
+app.service('GameService', function() {
+	var code = '';
 	var numberOfGuesses = 0;
-	var secretCode = '';
-	var GUESSING_LIMIT = 12;
+
+	this.getCode = function() {
+		return code;
+	};
+
+	this.getNumberOfGuesses = function() {
+		return numberOfGuesses;
+	};
+
+	this.incrementNumberOfGuesses = function() {
+		numberOfGuesses++;
+	};
+
+	this.initializeGame = function() {
+		var digit = 0;
+		var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+		code = '';
+		numberOfGuesses = 0;
+
+		for (var i=0; i<4; i++) {
+			digit = Math.floor(Math.random() * (9-i));
+			code += numbers[digit];
+			numbers.splice(digit, 1);
+		}
+	};
+
+	this.isCorrectCode = function(attempt) {
+		return attempt === code;
+	};
+
+	this.isGameOver = function() {
+		return numberOfGuesses === 12;
+	};
+
+	this.stringifyGuess = function(attempt) {
+		var stringOfGuess = '#' + numberOfGuesses + ': ' + attempt + ' : ';
+
+		if (this.isCorrectCode(attempt)) {
+			stringOfGuess += 'You won!';
+		}
+		else {
+			stringOfGuess += getCorrectPoints(attempt) + ' correct, ' + getWrongPoints(attempt) + ' wrong';
+		}
+
+		return stringOfGuess;
+	};
+
+	function getCorrectPoints(attempt) {
+		var correct = 0;
+
+		for (var i=0; i<attempt.length; i++) {
+			if (attempt.charAt(i) === code.charAt(i)) {
+				correct++;
+			}
+		}
+
+		return correct;
+	}
+
+	function getWrongPoints(attempt) {
+		var wrong = 0;
+
+		for (var i=0; i<attempt.length; i++) {
+			if ((attempt.charAt(i) !== code.charAt(i)) && (code.indexOf(attempt.charAt(i)) !== -1)) {
+				wrong++;
+			}
+		}
+
+		return wrong;
+	}
+});
+
+app.controller('MastermindController', ['$scope', 'GameService',
+function($scope, GameService) {
+	$scope.guess = '';
 
 	$scope.newGame  = function() {
 		$scope.errorMessage = '';
 		$scope.bottomMessage = '';
 		$scope.done = false;
-		numberOfGuesses = 0;
-		secretCode = '';
-		var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-		for (var i=0; i<4; i++) {
-			var digit = Math.floor(Math.random() * (9-i));
-			secretCode += numbers[digit];
-			numbers.splice(digit, 1);
-		}
 		$scope.guesses = [];
-		for (i=1; i<=GUESSING_LIMIT; i++) {
+
+		for (var i=1; i<=12; i++) {
 			$scope.guesses.push({'code': '#' + i + ':'});
 		}
+
+		GameService.initializeGame();
 	};
 
 	$scope.makeGuess = function() {
+		var guess = $scope.guess;
 		$scope.errorMessage = '';
-		numberOfGuesses++;
-		var guess = $scope.number;
+
 		if (guess.length !== 4) {
-			$scope.errorMessage = 'Please enter a 4 digit number';
-			numberOfGuesses--;
-		}
-		else if (guess === secretCode) {
-			$scope.guesses[numberOfGuesses-1].code = '#' + numberOfGuesses + ': ' + guess + ' : You won!';
-			numberOfGuesses--;
-			gameOver();
+			$scope.errorMessage = 'Please enter a 4 digit number.';
 		}
 		else {
-			var correct = correctPoints(guess, secretCode);
-			var wrong = wrongPoints(guess, secretCode);
-			$scope.guesses[numberOfGuesses-1].code = '#' + numberOfGuesses + ': ' + guess + ' : ' + correct +' correct, ' + wrong + ' wrong';
+			GameService.incrementNumberOfGuesses();
+			$scope.guesses[GameService.getNumberOfGuesses()-1].code = GameService.stringifyGuess(guess);
+			
+			if (GameService.isCorrectCode(guess)) {
+				$scope.done = true;
+			}
+			else if (GameService.isGameOver()) {
+				$scope.bottomMessage = 'You lost! The code was ' + GameService.getCode() + '.';
+				$scope.done = true;
+			}
 		}
-		if (numberOfGuesses === GUESSING_LIMIT) {
-			$scope.bottomMessage = 'You lost! The code was ' + secretCode + '.';
-			gameOver();
-		}
-		$scope.number = '';
+
+		$scope.guess = '';
 	};
 
 	$scope.showCode = function() {
-		$scope.bottomMessage = 'The code was ' + secretCode;
-		gameOver();
+		$scope.bottomMessage = 'The code was ' + GameService.getCode() + '.';
+		$scope.done = true;
 	};
 
 	$scope.validateNumber = function() {
-		$scope.number = $scope.number.replace(/[^1-9\.]/g,'');
+		$scope.guess = $scope.guess.replace(/[^1-9\.]/g,'');
 	};
-
-	function init() {
-		$scope.newGame();
-	}
-
-	function correctPoints(guessedCode, actualCode) {
-		var correct = 0;
-		for (var i=0; i<guessedCode.length; i++) {
-			if (guessedCode.charAt(i) === actualCode.charAt(i)) {
-				correct++;
-			}
-		}
-		return correct;
-	}
-
-	function wrongPoints(guessedCode, actualCode) {
-		var wrong = 0;
-		for (var i=0; i<guessedCode.length; i++) {
-			if ((guessedCode.charAt(i) !== actualCode.charAt(i)) && (actualCode.indexOf(guessedCode.charAt(i)) !== -1)) {
-				wrong++;
-			}
-		}
-		return wrong;
-	}
-
-	function gameOver() {
-		$scope.done = true;
-	}
-
-	init();
+	
+	$scope.newGame();
 }]);
