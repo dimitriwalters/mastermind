@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app',[]);
+var app = angular.module('app', []);
 
 app.service('GameService', function() {
 	var code = '';
@@ -95,17 +95,16 @@ function($scope, GameService) {
 	};
 
 	$scope.makeGuess = function() {
-		var guess = $scope.guess;
 		$scope.errorMessage = '';
 
-		if (guess.length !== 4) {
+		if ($scope.guess.length !== 4) {
 			$scope.errorMessage = 'Please enter a 4 digit number.';
 		}
 		else {
 			GameService.incrementNumberOfGuesses();
-			$scope.guesses[GameService.getNumberOfGuesses()-1].code = GameService.stringifyGuess(guess);
+			$scope.guesses[GameService.getNumberOfGuesses()-1].code = GameService.stringifyGuess($scope.guess);
 			
-			if (GameService.isCorrectCode(guess)) {
+			if (GameService.isCorrectCode($scope.guess)) {
 				$scope.done = true;
 			}
 			else if (GameService.isGameOver()) {
