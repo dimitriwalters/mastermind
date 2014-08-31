@@ -21,7 +21,7 @@ app.service('GameService', function() {
 	this.initializeGame = function() {
 		var digit = 0;
 		var numbers = _.range(1, 10);
-		_(numbers).forEach(function(num) { num.toString(); });
+		_(numbers).forEach(function(number) { number.toString(); });
 		code = '';
 		numberOfGuesses = 0;
 
