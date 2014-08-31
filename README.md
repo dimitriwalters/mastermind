@@ -1,4 +1,4 @@
 Mastermind App
 ---------
 
-Mastermind App is a web application of the board game Mastermind. It is developed using Angular.
+Mastermind App is a web application of the board game Mastermind. It is developed using Angular and Lo-Dash.

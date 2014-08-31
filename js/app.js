@@ -20,7 +20,8 @@ app.service('GameService', function() {
 
 	this.initializeGame = function() {
 		var digit = 0;
-		var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+		var numbers = _.range(1, 10);
+		_(numbers).forEach(function(num) { num.toString(); });
 		code = '';
 		numberOfGuesses = 0;
 
