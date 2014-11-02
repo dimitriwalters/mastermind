@@ -1,0 +1,28 @@
+{
+  "name": "mastermind",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dimitriwalters/mastermind",
+  "authors": [
+    "Dimitri Walters <me@dimitriwalters.com>"
+  ],
+  "description": "classic board game mastermind",
+  "main": "index.html",
+  "keywords": [
+    "mastermind",
+    "board",
+    "game"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.1"
+  }
+}
