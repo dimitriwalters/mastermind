@@ -11,7 +11,7 @@
 			<span class="top__title"><strong>MASTER</strong>MIND</span>
 			<span class="top__author">developed by <a href="http://dimi.io/" target="_blank">Dimitri Walters</a></span>
 		</div>
-		<div class="game" ng-controller="MastermindController">
+		<div class="game" ng-controller="MainCtrl">
 			<div class="guessing-area">
 				<form class="guessing-area__form" ng-submit="makeGuess()">
 					<span>Guess:</span>
@@ -26,7 +26,7 @@
 			</div>
 			<div class="button-area">
 				<button ng-click="showCode()" ng-disabled="done">Show code</button>
-				<button ng-click="newGame()">New game</button>
+				<button ng-click="startGame()">New game</button>
 			</div>
 			<p class="game__bottom-message">{{ bottomMessage }}</p>
 		</div>
