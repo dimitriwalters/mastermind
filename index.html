@@ -1,49 +1,49 @@
 <!doctype html>
 <html lang="en">
-	<head>
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=600, initial-scale=1.0">
-		<title>Mastermind</title>
-		<link rel="stylesheet" type="text/css" href="css/style.min.css">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=600, initial-scale=1.0">
+    <title>Mastermind</title>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
 
-		<!-- bower:js -->
-		<script src="bower_components/angular/angular.js"></script>
-		<!-- endinject -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <!-- endinject -->
 
-		<script src="scripts/app.js"></script>  
-	</head>
+    <script src="scripts/app.js"></script>  
+  </head>
 
-	<body ng-app="app">
-		<div class="top">
-			<span class="top__title"><strong>MASTER</strong>MIND</span>
-			<span class="top__author">developed by <a href="http://dimi.io/" target="_blank">Dimitri Walters</a></span>
-		</div>
+  <body ng-app="app">
+    <div class="top">
+      <span class="top__title"><strong>MASTER</strong>MIND</span>
+      <span class="top__author">developed by <a href="http://dimi.io/" target="_blank">Dimitri Walters</a></span>
+    </div>
 
-		<div class="game" ng-controller="MainCtrl">
-			<div class="guessing-area">
-				<form class="guessing-area__form" ng-submit="makeGuess()">
-					<span>Guess:</span>
-					<input class="guessing-area__input" type="text" maxlength="4" ng-model="guess" ng-keyup="validateNumber()" ng-disabled="done" />
-					<button class="guessing-area__submit" type="submit" ng-disabled="done">Make a guess</button>
-					<span class="guessing-area__error">{{ errorMessage }}</span>
-				</form>
-			</div>
+    <div class="game" ng-controller="MainCtrl">
+      <div class="guessing-area">
+        <form class="guessing-area__form" ng-submit="makeGuess()">
+          <span>Guess:</span>
+          <input class="guessing-area__input" type="text" maxlength="4" ng-model="guess" ng-keyup="validateNumber()" ng-disabled="done" />
+          <button class="guessing-area__submit" type="submit" ng-disabled="done">Make a guess</button>
+          <span class="guessing-area__error">{{ errorMessage }}</span>
+        </form>
+      </div>
 
-			<div class="guesses-area">
-				<span>Guesses:</span>
-				<div ng-repeat="guess in guesses">{{ guess.code }}</div>
-			</div>
+      <div class="guesses-area">
+        <span>Guesses:</span>
+        <div ng-repeat="guess in guesses">{{ guess.code }}</div>
+      </div>
 
-			<div class="button-area">
-				<button ng-click="showCode()" ng-disabled="done">Show code</button>
-				<button ng-click="startGame()">New game</button>
-			</div>
+      <div class="button-area">
+        <button ng-click="showCode()" ng-disabled="done">Show code</button>
+        <button ng-click="startGame()">New game</button>
+      </div>
 
-			<p class="game__bottom-message">{{ bottomMessage }}</p>
-		</div>
+      <p class="game__bottom-message">{{ bottomMessage }}</p>
+    </div>
 
-		<div class="instructions">
-			<p>Insturctions: Guess a 4-digit number using the numbers 1 through 9. If your guess matches the code, you win! Otherwise you will be told how many of your digits matches the code (denoted by 'correct'), and how many digits are in the code but in the wrong position (denoted by 'wrong'). The code's digits are unique.</p>
-		</div>
-	</body>
+    <div class="instructions">
+      <p>Insturctions: Guess a 4-digit number using the numbers 1 through 9. If your guess matches the code, you win! Otherwise you will be told how many of your digits matches the code (denoted by 'correct'), and how many digits are in the code but in the wrong position (denoted by 'wrong'). The code's digits are unique.</p>
+    </div>
+  </body>
 </html>
