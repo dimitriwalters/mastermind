@@ -70,9 +70,9 @@ angular
 
         this.initializeGame = function () {
             var digit = 0,
-                numbers = _.range(1, 10),
+                numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9],
                 i = 0;
-            _(numbers).forEach(function (number) { number.toString(); });
+            numbers.forEach(function (number) { number.toString(); });
             code = '';
             numberOfGuesses = 0;
 
