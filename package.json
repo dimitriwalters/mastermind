@@ -1,0 +1,30 @@
+{
+  "name": "mastermind",
+  "version": "1.0.0",
+  "description": "classic board game master",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-inject": "^1.0.2",
+    "main-bower-files": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimitriwalters/mastermind.git"
+  },
+  "keywords": [
+    "mastermind",
+    "board",
+    "game"
+  ],
+  "author": "Dimitri Walters <me@dimi.io> (http://dimi.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimitriwalters/mastermind/issues"
+  },
+  "homepage": "https://github.com/dimitriwalters/mastermind"
+}
