@@ -9,6 +9,9 @@
     "gulp-inject": "^1.0.2",
     "main-bower-files": "^2.1.0"
   },
+  "overrides": {
+    "graceful-fs": "^4.2.11"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
