@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "classic board game master",
   "main": "index.html",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
   "devDependencies": {
     "gulp": "^3.8.9",
     "gulp-inject": "^1.0.2",
