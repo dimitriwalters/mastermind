@@ -15,7 +15,8 @@ function App() {
   const WON_MSG = 'You won!';
 
   function handleGuessChange(e) {
-    setGuess(e.target.value);
+    const value = e.target.value.replace(/\D/g, "");
+    setGuess(value);
   }
 
   function newGame() {
