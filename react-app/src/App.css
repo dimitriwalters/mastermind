@@ -1,42 +1,79 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.game {
+  display: inline-block;
+  width: 530px;
+  border: solid black 1px;
+  background-color: #eee;
+  padding: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+  .game__bottom-message {
+    margin-left: 10px;
+    clear: left;
   }
-  to {
-    transform: rotate(360deg);
+
+
+.top {
+  margin: 30px 0;
+  padding: 0 2px
+}
+
+  .top__title {
+    font-size:32px;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .top__author {
+    float: right;
   }
+
+
+.guessing-area {
+  width: 200px;
+  border-radius: 40px;
 }
 
-.card {
-  padding: 2em;
+  .guessing-area__form {
+    background-color: #ccc;
+    margin-bottom: 15px;
+      border-style:solid;
+    border-width:1px;
+    border-radius: 40px;
+    padding: 20px;
+    float: left;
+  }
+
+  .guessing-area__input {
+    padding: 5px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    width: 200px;
+  }
+
+  .guessing-area__submit {
+    margin-top: 4px;
+  }
+
+  .guessing-area__error {
+    display: block;
+    margin-top: 10px;
+  }
+
+
+.guesses-area {
+  background-color: #ccc;
+  width: 200px;
+    border-style:solid;
+  border-width:1px;
+    padding: 20px;
+  float: right;
 }
 
-.read-the-docs {
-  color: #888;
+
+.button-area {
+  margin-left: 10px;
+  clear: left;
+}
+
+
+.instructions {
+  margin-top: 40px;
 }
