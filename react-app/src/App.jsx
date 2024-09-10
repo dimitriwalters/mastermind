@@ -20,6 +20,8 @@ function App() {
   }
 
   function newGame() {
+    var newCode = generateCode();
+    setCode(newCode);
     setCount(0);
     setStatus(0);
     setGuessesText(['1:','2:','3:','4:','5:','6:','7:','8:','9:','10:','11:','12:']);
