@@ -1,49 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=600, initial-scale=1.0">
-    <title>Mastermind</title>
-    <link rel="stylesheet" type="text/css" href="css/style.min.css">
-
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <!-- endinject -->
-
-    <script src="scripts/app.js"></script>  
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script type="module" crossorigin src="/assets/index-BygkPdZf.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DmCNmqH3.css">
   </head>
-
-  <body ng-app="app">
-    <div class="top">
-      <span class="top__title"><strong>MASTER</strong>MIND</span>
-      <span class="top__author">View on <a href="https://github.com/dimitriwalters/mastermind">GitHub</a></span>
-    </div>
-
-    <div class="game" ng-controller="MainCtrl">
-      <div class="guessing-area">
-        <form class="guessing-area__form" ng-submit="makeGuess()">
-          <span>Guess:</span>
-          <input class="guessing-area__input" type="text" maxlength="4" ng-model="guess" ng-keyup="validateNumber()" ng-disabled="done" />
-          <button class="guessing-area__submit" type="submit" ng-disabled="done">Make a guess</button>
-          <span class="guessing-area__error">{{ errorMessage }}</span>
-        </form>
-      </div>
-
-      <div class="guesses-area">
-        <span>Guesses:</span>
-        <div ng-repeat="guess in guesses">{{ guess.code }}</div>
-      </div>
-
-      <div class="button-area">
-        <button ng-click="showCode()" ng-disabled="done">Show code</button>
-        <button ng-click="startGame()">New game</button>
-      </div>
-
-      <p class="game__bottom-message">{{ bottomMessage }}</p>
-    </div>
-
-    <div class="instructions">
-      <p>Insturctions: Guess a 4-digit number with unique digits 1 - 9. You are told how many digits match the code (correct), and how many are in the code but wrong position (wrong).</p>
-    </div>
+  <body>
+    <div id="root"></div>
   </body>
 </html>
